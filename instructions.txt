@@ -1,0 +1,9 @@
+How to start virtual environment:
+
+env\Scripts\activate.bat
+
+How to stop virtual environment:
+
+deactivate
+
+--Note: this virtual environment was created with virtualenv
