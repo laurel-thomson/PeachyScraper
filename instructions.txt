@@ -7,3 +7,7 @@ How to stop virtual environment:
 deactivate
 
 --Note: this virtual environment was created with virtualenv
+
+Running the spider:
+
+scrapy runspider scraper.py
