@@ -6,14 +6,22 @@
 
 # useful for handling different item types with a single interface
 from itemadapter import ItemAdapter
-
+import firebase_admin
+from firebase_admin import credentials
+from firebase_admin import db
 
 class PeachyPipeline:
-	#def __init__(self):
-		#set up database connection
+	def open_spider(self, spider):
+		cred = credentials.Certificate('peachy/firebase_key.json')
+		firebase_admin.initialize_app(cred, {
+			'databaseURL' : 'https://friendly-chat-e1c79.firebaseio.com'
+		})
+		self.db_reference = db.reference('scrapedRecipes')
 
 	def process_item(self, item, spider):
-		#save item in the database
+		self.db_reference.push({
+			'name' : 'test'
+		})
 		print(item)
 
 		# IDEA: maybe the key could be a unique hash of the recipe's URL?? that way
