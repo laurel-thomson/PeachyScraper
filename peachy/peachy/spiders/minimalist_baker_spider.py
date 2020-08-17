@@ -3,14 +3,14 @@ from peachy.items import RecipeItem
 
 class MinimalistBakerSpider(scrapy.Spider):
 	name = 'minimalist_baker_spider'
-	start_urls = [ 'https://minimalistbaker.com/recipe-index?fwp_special-diet=vegan&fwp_paged=57' ]
+	start_urls = [ 'https://minimalistbaker.com/recipe-index?fwp_special-diet=vegan&fwp_paged=58' ]
 
 	def parse(self, response):
-		for recipeLink in response.css('.post-summary__title'):
+		for recipeCard in response.css('.post-summary.primary'):
 			recipe = RecipeItem()
-			recipe['url'] = recipeLink.css('a::attr(href)').get()
-			recipe['title'] = 'test'
-			recipe['image_url'] = 'test'
+			recipe['url'] = recipeCard.css('.post-summary__title a::attr(href)').get()
+			recipe['title'] = recipeCard.css('.post-summary__title a::text').get()
+			recipe['image_url'] = recipeCard.css('.post-summary__image img::attr(src)').get()
 			yield recipe
 		
 		if len(response.css('.post-summary__title')) > 0:
