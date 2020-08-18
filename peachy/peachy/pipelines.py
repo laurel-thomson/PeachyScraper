@@ -28,7 +28,4 @@ class PeachyPipeline:
 			'imageUrl' : item['image_url']
 		})
 
-		# IDEA: maybe the key could be a unique hash of the recipe's URL?? that way
-		# the same recipe will always go to the same key and then duplicates are simply
-		# saved over?
 		return item
